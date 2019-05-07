@@ -1,0 +1,41 @@
+**Interpolación cúbica, lineal y Diferencias Divididas**
+function [A]=difdivididas_valores(X,y,punto)
+syms x
+n=length(X);
+A=zeros(n,n);
+A(:,1)=y';
+for j=2:n
+    for i=j:n
+         A(i,j) = (A(i,j-1)-A(i-1,j-1))/(X(i) - X(i+1-j));
+    end
+end
+P=A(1,1)+A(2,2)*(x-X(1))+A(3,3)*(x-X(1))*(x-X(2))+A(4,4)*(x-X(1))*(x-X(2))*(x-X(3))+ ... +  
+A(5,5)*(x-X(1))*(x-X(2))*(x-X(3))*(x-X(4))
+aproximado=vpa(subs(P,punto))
+
+>> i = [0.25 0.75 1.25 1.5 2.0]; %Actúa como X
+>> v = [-0.45 -0.6 0.70 1.88 6.0]; %Actúa como Y
+>> x0=1.35;
+
+>> [A]=difdivididas_valores(i,v,x0);
+ 
+P =
+ 
+((29*x)/10 - 29/40)*(x - 3/4) - (3*x)/10 - ((22*x)/375 - 11/750)*(x - 3/4)*(x - 5/4) + ((776*x)/875 - 194/875)*(x - 3/2)*(x - 3/4)*(x - 5/4) - 3/8
+ 
+ 
+aproximado =
+ 
+1.1213481142857143
+
+>> interp1(i,v,x0,'pchip') %Cúbica
+
+ans =
+
+   1.1003e+00
+
+>> interp1(i,v,x0,'linear') %Lineal
+
+ans =
+
+   1.1720e+00

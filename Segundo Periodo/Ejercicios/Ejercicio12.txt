@@ -1,0 +1,48 @@
+**Neville e interpolación escalonada*
+function [A]=Neville_valores(x,y,punto)
+n=length(x);
+A=zeros(n,n);
+A(:,1)=y';
+for j=2:n
+    for i=j:n
+         A(i,j) = vpa((punto-x(i+1-j))*A(i,j-1) - ((punto-x(i))*A(i-1,j-1)))/(x(i) - x(i+1-j));
+    end
+end
+val_aprox = vpa(A(n,n))
+
+
+>> T=[0.01 10 20 30 40 50];
+>> Vg=[206.14 106.38 57.79 32.89 19.52 12.03];
+>> x0=(47.3-32)/1.8;
+>> [A]=Neville_valores(T,Vg,x0)
+ 
+val_aprox =
+ 
+117.14190649298287
+ 
+
+A =
+
+  Columns 1 through 4
+
+   2.0614e+02            0            0            0
+   1.0638e+02   1.2136e+02            0            0
+   5.7790e+01   1.1367e+02   1.1809e+02            0
+   3.2890e+01   8.6425e+01   1.1571e+02   1.1742e+02
+   1.9520e+01   6.1636e+01   1.0068e+02   1.1646e+02
+   1.2030e+01   4.3114e+01   8.1547e+01   1.0801e+02
+
+  Columns 5 through 6
+
+            0            0
+            0            0
+            0            0
+            0            0
+   1.1722e+02            0
+   1.1678e+02   1.1714e+02
+
+>> interp1(T,Vg,x0,'spline') %escalonada
+
+ans =
+
+   1.1733e+02

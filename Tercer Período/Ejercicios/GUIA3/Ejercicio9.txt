@@ -1,0 +1,46 @@
+>> f=5/(t^2*sqrt(t^2-49));
+>> pretty(f)
+        5
+----------------
+ 2       2
+t  sqrt(t  - 49)
+
+>> integral=double(int(f,t,9.5,10.5))
+
+integral =
+
+   0.007070522442715
+   
+
+>> x=linspace(9.5,10.5);
+>> y=5./(x.^2.*sqrt(x.^2-49));
+>> integral=trapz(x,y)
+
+integral =
+
+   0.007070536943257
+   
+>>  integral=quad(@ejercicio9,9.5,10.5)
+
+integral =
+
+   0.007070522451839
+
+>> integral=quadl(@ejercicio9,9.5,10.5)
+
+integral =
+
+   0.007070522442732
+
+>> integral=quadgk(@ejercicio9,9.5,10.5)
+
+integral =
+
+   0.007070522442715
+
+>> integral=quadv(@ejercicio9,9.5,10.5)
+
+integral =
+
+   0.007070522451839
+   

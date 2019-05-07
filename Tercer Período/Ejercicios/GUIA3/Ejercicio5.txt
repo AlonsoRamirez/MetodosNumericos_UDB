@@ -1,0 +1,39 @@
+>> integral=quad(@ejercicio5,0.01,0.03)
+
+integral =
+
+     4.087333292540603e-04
+
+>> integral=quadgk(@ejercicio5,0.01,0.03)
+
+integral =
+
+     4.087333292540603e-04
+
+>> integral=quadl(@ejercicio5,0.01,0.03)
+
+integral =
+
+     4.087333292540603e-04
+
+>> integral=quadv(@ejercicio5,0.01,0.03)
+
+integral =
+
+     4.087333292540603e-04
+	 
+>> x=linspace(0.01,0.03);
+>> y=exp(x).*sin(x);
+>> integral=trapz(x,y)
+
+integral =
+
+     4.087334680149522e-04
+	 
+>> syms t
+>> f=exp(t)*sin(t);
+>> integral=double(int(f,t,0.01,0.03))
+
+integral =
+
+     4.087333292540603e-04	

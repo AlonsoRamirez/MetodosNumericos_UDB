@@ -1,0 +1,7 @@
+>> t=[1:0.5:3];
+>> v=[35 77 98 118 145];
+>> aceleracion=diff(v)./diff(t)
+
+aceleracion =
+
+    84    42    40    54

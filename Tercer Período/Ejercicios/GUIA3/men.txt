@@ -1,0 +1,4 @@
+w(j+1)=w(j)+h*subs(f,{t,y},{T(j),w(j)});
+w(j+1)=w(j)+h*subs(f,{t,y},{T(j)+h/2,w(j)+h/2*subs(f,{t,y},{T(j),w(j)})});
+w(j+1)=w(j)+0.5*h*subs(f,{t,y},{T(j),w(j)})+0.5*h*subs(f,{t,y},{T(j+1),w(j)+h*subs(f,{t,y},{T(j),w(j)})});
+w(i+1) = w(i)+((h/4)*(subs(f,{t,y},{T(i),w(i)})))+(((3/4)*h)*(subs(f,{t,y},{(T(i)+((2/3)*h)),(w(i)+(((2/3)*h)*(subs(f,{t,y},{T(i),w(i)}))))})));

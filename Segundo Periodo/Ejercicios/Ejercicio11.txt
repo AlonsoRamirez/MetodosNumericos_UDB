@@ -1,0 +1,62 @@
+*Interpolación Escalonada, lineal y diferencias divididas*
+function [A]=difdivididas_valores(X,y,punto)
+syms x
+n=length(X);
+A=zeros(n,n);
+A(:,1)=y';
+for j=2:n
+    for i=j:n
+         A(i,j) = (A(i,j-1)-A(i-1,j-1))/(X(i) - X(i+1-j));
+    end
+end
+P=A(1,1)+A(2,2)*(x-X(1))+A(3,3)*(x-X(1))*(x-X(2))+A(4,4)*(x-X(1))*(x-X(2))*(x-X(3))+ ... +  
+A(5,5)*(x-X(1))*(x-X(2))*(x-X(3))*(x-X(4))+A(6,6)*(x-X(1))*(x-X(2))*(x-X(3))*(x-X(4))*(x-X(5))
+aproximado=vpa(subs(P,punto))
+
+>> year=[1940 1950 1960 1970 1980 1990];
+>> population=[132165 151326 179323 203302 226542 249633];
+>> x0=1948;
+>> [A]=difdivididas_valores(year,population,x0)
+ 
+P =
+ 
+(19161*x)/10 + ((2209*x)/50 - 428546/5)*(x - 1950) - ((6427*x)/3000 - 623419/150)*(x - 1950)*(x - 1960) + ((2421885759612273*x)/36028797018963968 - 1174614593411952405/9007199254740992)*(x - 1950)*(x - 1960)*(x - 1970) - (x - 1950)*(x - 1960)*(x - 1970)*(x - 1980)*((7233429519903355*x)/4611686018427387904 - 3508213317153127175/1152921504606846976) - 3585069
+ 
+ 
+aproximado =
+ 
+145879.640192
+ 
+
+A =
+
+  Columns 1 through 4
+
+   1.3217e+05            0            0            0
+   1.5133e+05   1.9161e+03            0            0
+   1.7932e+05   2.7997e+03   4.4180e+01            0
+   2.0330e+05   2.3979e+03  -2.0090e+01  -2.1423e+00
+   2.2654e+05   2.3240e+03  -3.6950e+00   5.4650e-01
+   2.4963e+05   2.3091e+03  -7.4500e-01   9.8333e-02
+
+  Columns 5 through 6
+
+            0            0
+            0            0
+            0            0
+            0            0
+   6.7221e-02            0
+  -1.1204e-02  -1.5685e-03
+
+>> x0=1992;
+>> interp1(year,population,x0,'linear','extrap') %extrapolación lineal
+
+ans =
+
+   2.5425e+05
+
+>> interp1(year,population,x0,'spline','extrap') %extrapolación escalonada
+
+ans =
+
+   2.5413e+05

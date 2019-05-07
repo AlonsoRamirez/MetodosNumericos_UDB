@@ -1,0 +1,90 @@
+a)
+>> dblquad(@f35a,0,4,0,2)
+
+ans =
+
+     1.768148525538549e+00
+>> f=1/((x+1)*(y+1));
+>> integral=double(int(int(f,x,0,4),y,0,2))
+
+integral =
+
+     1.768148268448452e+00
+b)
+>> dblquad(@f35b,0,4,0,2)
+
+ans =
+
+     4.266666666666666e+01
+
+>> f=x^2*y
+
+>> integral=double(int(int(f,y,0,2),x,0,4))
+
+integral =
+
+     4.266666666666666e+01
+c)
+>> dblquad(@f35c,-pi,pi/3,0,pi/2)
+
+ans =
+
+    -1.499999983261205e+00
+
+>> f=sin(x)*cos(y);
+>> integral=double(int(int(f,x,-pi,pi/3),y,0,pi/2))
+
+integral =
+
+    -1.500000000000000e+00
+d)
+>> triplequad(@f35d,-1,1,-1,1,-1,1)
+
+ans =
+
+     2.962962962962963e-01
+>> f=x^2*y^2*z^2;
+>> integral=double(int((int(int(f,x,-1,1),y,-1,1)),z,-1,1))
+
+integral =
+
+     2.962962962962963e-01
+e)
+>> triplequad(@f35e,0,1,0,2,0,3)
+
+ans =
+
+    18
+
+>> f=x+y+z;
+>> integral=double(int((int(int(f,x,0,1),y,0,2)),z,0,3))
+
+integral =
+
+    18
+f)
+>> triplequad(@f35f,0,4,0,4,0,4)
+
+ans =
+
+     2.718530370370370e+04
+
+>> f=(y^2+z^2)*(x^2*y^2);
+>> integral=double(int((int(int(f,x,0,4),y,0,4)),z,0,4))
+
+integral =
+
+     2.718530370370370e+04
+g)
+>> triplequad(@f35g,0,pi,0,pi/2,0,pi/3)
+
+ans =
+
+     3.052124857775094e+00
+
+>> f=x*y*sin(y*z);
+>>  integral=double(int((int(int(f,z,0,pi/3),y,0,pi/2)),x,0,pi))
+
+integral =
+
+     3.052124856965794e+00
